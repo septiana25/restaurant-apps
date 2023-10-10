@@ -199,9 +199,9 @@ main {
     background-color: var(--color-white);
 }
 
-.rest-city h1 {
+.rest-city p {
     padding: .5rem;
-    color: var(--main-color);
+    color: var(--font-main);
 }
 
 .rest-item__thumb {

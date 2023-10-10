@@ -37,11 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const restaurants = await DataSource.fetchRestaurants();
       const restaurantCards = restaurants.map(restaurant => {
         return `
-
           <article class="rest-item">
             <div class="wraper">
               <div class="rest-city">
-                <h1>${restaurant.city}</h1>
+                <p>${restaurant.city}</p>
               </div>
               <img class="rest-item__thumb" src="${restaurant.pictureId}" alt="${restaurant.name}">
               <div class="rest-item__content">
@@ -54,10 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </article>
         `;
       }).join('');
-      console.log(restaurantElement);
       restaurantElement.innerHTML = restaurantCards;
     } catch (error) {
-      console.log(error);
+      /* improvement handle error */
     }
   };
 
