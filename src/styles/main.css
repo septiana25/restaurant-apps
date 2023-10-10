@@ -59,9 +59,11 @@ header {
 .logo {
     display: flex;
     align-items: center;
+    height: 50px;
+    padding-inline: 1rem;
   }
   .logo img {
-    height: 25px;
+    height: 18px;
     width: auto;
   }
   
@@ -98,7 +100,12 @@ header {
     color: var(--main-color);
     border-bottom: 1px solid var(--main-color);
 }
-  
+#drawer-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+}
 #drawer{
     display: flex;
     align-items: center;
@@ -110,6 +117,7 @@ header {
     font-size: var(--font-head);
     font-weight: 600;
     min-height: 50px;
+    padding-inline: 10px;
 }
 
 .hero {
@@ -184,18 +192,23 @@ main {
     position: relative;
 }
 
-.rest-item .rest-city {
+.rest-city {
     position: absolute;
-    top: 5%;
-    border: 1px solid var(--font-main);
+    top: 3%;
+    border: 1px solid var(--main-color);
+    background-color: var(--color-white);
 }
 
 .rest-city h1 {
     padding: .5rem;
+    color: var(--main-color);
 }
 
 .rest-item__thumb {
     width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .rest-item__content {
@@ -207,12 +220,29 @@ main {
     font-size: 14px;
 }
 
-/* .rest-item__content span {
-    color: var(--main-color);
-} */
 
-.rest-item__content h3 {
+.rest-item__title {
+    display: flex;
+    align-items: center;
+    height: 50px;
     font-size: 18px;
+    transition: 0.3s opacity;
+    text-transform: capitalize;
+}
+
+.rest-item__title a {
+    text-decoration: none;
+    color: #E1A90C;
+    padding-block: 15px;
+}
+
+.rest-item__title:hover{
+    opacity: 0.7;
+}
+
+.rest-item__description {
+    font-size: 12px;
+    line-height: 1.5em;  
 }
 
 .footer {
@@ -226,9 +256,10 @@ main {
     color: var(--font-main);
     font-size: 16px;
     font-weight: 600;
+    padding: 15px 10px;
 }
 
-@media screen and (max-width: 499px) {
+@media screen and (max-width: 537px) {
     .navbar {
         z-index: 1;
         background-color: #fff;
@@ -255,19 +286,23 @@ main {
         padding-block: 0.5rem;
     }    
 }
-@media screen and (max-width: 499px) {
-
-}
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 538px) {
     #drawer-btn {
       display: none;
     }
 }
 
-@media screen and (min-width: 600px) {
-/*     header {
-        padding: 20px 15%;
-    } */
+@media screen and (min-width: 650px) {
+    .rest-item__content {
+        padding: 16px 32px 32px 32px;
+    }
+    .rest-item__title {
+        font-size: 18px;
+    }
+    
+    .rest-item__description {
+        font-size: 14px;
+    }
 }
 
 @media screen and (min-width: 700px) {
@@ -277,12 +312,13 @@ main {
       grid-column-gap: 10px;
       grid-row-gap: 16px;
     }
+
+    .rest-item__thumb {
+        height: 250px;
+    }
   }
 
 @media screen and (min-width: 800px) {
-    /*     header {
-            padding: 20px 15%;
-        } */
     .hero {
         min-width: 480px;
     }
