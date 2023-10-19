@@ -1,42 +1,39 @@
 import 'regenerator-runtime'; /* for async await transpile */
 import '../styles/main.css';
-import DataSource from '../public/data/data-source';
 import { async } from 'regenerator-runtime';
+import DataSource from '../public/data/data-source';
 
 document.addEventListener('DOMContentLoaded', () => {
-
   const menuBtn = document.querySelector('.menu-btn');
   const hero = document.querySelector('.hero');
   const main = document.querySelector('main');
   const drawer = document.querySelector('#drawer');
   const drawerBtn = document.querySelector('#drawer-btn');
   const restaurantElement = document.querySelector('#restaurants');
-  
-  menuBtn.addEventListener('click', function (event) {
+
+  menuBtn.addEventListener('click', (event) => {
     drawer.classList.toggle('active');
     event.stopPropagation();
   });
 
-  drawerBtn.addEventListener('keypress', function (event) {
+  drawerBtn.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
       drawer.classList.toggle('active');
-    } 
+    }
   });
 
-  
-  hero.addEventListener('click', function () {
+  hero.addEventListener('click', () => {
     drawer.classList.remove('active');
   });
-  
-  main.addEventListener('click', function () {
+
+  main.addEventListener('click', () => {
     drawer.classList.remove('active');
   });
 
   const renderRestaurants = async () => {
     try {
       const restaurants = await DataSource.fetchRestaurants();
-      const restaurantCards = restaurants.map(restaurant => {
-        return `
+      const restaurantCards = restaurants.map((restaurant) => `
           <article class="rest-item">
             <div class="wraper">
               <div class="rest-city">
@@ -51,8 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
           </article>
-        `;
-      }).join('');
+        `).join('');
       restaurantElement.innerHTML = restaurantCards;
     } catch (error) {
       /* improvement handle error */
@@ -60,5 +56,4 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   renderRestaurants();
-  
 });

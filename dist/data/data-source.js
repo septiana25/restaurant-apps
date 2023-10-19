@@ -1,0 +1,1 @@
+class DataSource{static async fetchRestaurants(){try{const t=await fetch("./data/DATA.json"),a=await t.json();return a.restaurants.length>0?Promise.resolve(a.restaurants):Promise.reject(new Error("Data restaurants is not found"))}catch(t){return Promise.reject(t)}}}export default DataSource;

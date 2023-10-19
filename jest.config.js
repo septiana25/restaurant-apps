@@ -8,8 +8,7 @@ const config = {
   testMatch: [
     '**/tests/**/*.test.[jt]s?(x)',
   ],
-
-  // The paths to modules that run some code to configure or set up the testing environment before each test
+  // The directory where Jest should output its coverage files
   setupFiles: ['fake-indexeddb/auto'],
 
   // The test environment that will be used for testing
