@@ -1,7 +1,8 @@
-import 'regenerator-runtime'; /* for async await transpile */
+import 'regenerator-runtime';
+import Str from '@supercharge/strings';
 import '../styles/main.css';
-import { async } from 'regenerator-runtime';
-import DataSource from '../public/data/data-source';
+import DataSource from './data/data-source';
+import CONFIG from './globals/config';
 
 document.addEventListener('DOMContentLoaded', () => {
   const menuBtn = document.querySelector('.menu-btn');
@@ -39,11 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="rest-city">
                 <p>${restaurant.city}</p>
               </div>
-              <img class="rest-item__thumb" src="${restaurant.pictureId}" alt="${restaurant.name}">
+              <img class="rest-item__thumb" src="${CONFIG.BASE_URL_IMAGE}/medium/${restaurant.pictureId}" alt="${restaurant.name}">
               <div class="rest-item__content">
                 <h2>Rating ${restaurant.rating}</h2>
                 <h3 class="rest-item__title"><a href="#">${restaurant.name}</a></h3>
-                <p class="rest-item__description">${restaurant.description}</p>
+                <p class="rest-item__description">${Str(restaurant.description).limit(100, '...').get()}</p>
                 <h1></h1>
               </div>
             </div>

@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -27,6 +28,19 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    fallback: {
+      url: require.resolve('url'),
+      fs: require.resolve('fs'),
+      assert: require.resolve('assert'),
+      crypto: require.resolve('crypto-browserify'),
+      http: require.resolve('stream-http'),
+      https: require.resolve('https-browserify'),
+      os: require.resolve('os-browserify/browser'),
+      buffer: require.resolve('buffer'),
+      stream: require.resolve('stream-browserify'),
+    },
+  },
   plugins: [
     new CleanWebpackPlugin(),
 
@@ -42,5 +56,6 @@ module.exports = {
         },
       ],
     }),
+    new NodePolyfillPlugin(),
   ],
 };
