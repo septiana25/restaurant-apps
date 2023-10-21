@@ -1,4 +1,5 @@
 import DataSource from '../../data/data-source';
+import { createRestauranItemTemplate } from '../templates/template';
 
 const Home = {
   async render() {
@@ -14,6 +15,9 @@ const Home = {
   async afterRender() {
     const restaurants = await DataSource.fetchRestaurants();
     const restaurantElement = document.querySelector('#restaurants');
+    restaurants.forEach((restaurant) => {
+      restaurantElement.innerHTML += createRestauranItemTemplate(restaurant);
+    });
   },
 };
 

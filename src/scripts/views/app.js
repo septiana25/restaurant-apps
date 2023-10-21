@@ -1,3 +1,5 @@
+import router from '../routers/router';
+import UrlParser from '../routers/url-parser';
 import DrawerInitiator from '../utils/drawer-initiator';
 
 class App {
@@ -18,7 +20,10 @@ class App {
   }
 
   async renderPage() {
-    console.log(this._content);
+    const url = UrlParser.parseActiveUrlWithCombiner();
+    const page = router[url];
+    this._content.innerHTML = await page.render();
+    await page.afterRender();
   }
 }
 
