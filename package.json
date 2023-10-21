@@ -43,6 +43,7 @@
   "dependencies": {
     "@supercharge/strings": "^2.0.0",
     "axios": "^1.5.1",
-    "regenerator-runtime": "^0.14.0"
+    "regenerator-runtime": "^0.14.0",
+    "webpack-bundle-analyzer": "^4.9.1"
   }
 }

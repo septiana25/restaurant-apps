@@ -12,6 +12,18 @@ class DataSource {
       return new Error('Check your internet connection');
     }
   }
+
+  static async fetchById(url) {
+    try {
+      const response = await apiURL.get(`detail/${url.id}`);
+      if (!response.data.error) {
+        return response.data.restaurant;
+      }
+      return new Error('Data restaurants is not found');
+    } catch (error) {
+      return new Error('Check your internet connection');
+    }
+  }
 }
 
 export default DataSource;

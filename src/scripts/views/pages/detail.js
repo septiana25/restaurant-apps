@@ -1,3 +1,5 @@
+import DataSource from '../../data/data-source';
+import UrlParser from '../../routers/url-parser';
 import { createDetailRestauranItemTemplate } from '../templates/template';
 
 const Detail = {
@@ -10,9 +12,10 @@ const Detail = {
   },
 
   async afterRender() {
-    // const restaurant = await DataSource.fetchRestaurant(id);
+    const url = UrlParser.parseActiveUrlWithoutCombiner();
+    const restaurant = await DataSource.fetchById(url);
     const container = document.querySelector('.rest-detail');
-    container.innerHTML += createDetailRestauranItemTemplate();
+    container.innerHTML += createDetailRestauranItemTemplate(restaurant);
   },
 };
 

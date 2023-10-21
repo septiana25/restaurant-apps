@@ -3,8 +3,32 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      maxSize: 70000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '~',
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
   entry: {
     app: path.resolve(__dirname, 'src/scripts/index.js'),
   },
@@ -28,27 +52,6 @@ module.exports = {
       },
     ],
   },
-  splitChunks: {
-    chunks: 'all',
-    minSize: 20000,
-    maxSize: 70000,
-    minChunks: 1,
-    maxAsyncRequests: 30,
-    maxInitialRequests: 30,
-    automaticNameDelimiter: '~',
-    enforceSizeThreshold: 50000,
-    cacheGroups: {
-      defaultVendors: {
-        test: /[\\/]node_modules[\\/]/,
-        priority: -10,
-      },
-      default: {
-        minChunks: 2,
-        priority: -20,
-        reuseExistingChunk: true,
-      },
-    },
-  },
   resolve: {
     fallback: {
       url: require.resolve('url'),
@@ -64,7 +67,10 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false,
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/templates/index.html'),
