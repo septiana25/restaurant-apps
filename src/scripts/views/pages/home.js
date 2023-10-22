@@ -22,7 +22,6 @@ const Home = {
     const skeletonThrid = document.createElement('app-skeleton');
 
     const restaurants = await DataSource.fetchRestaurants();
-    console.log(restaurants);
     restaurantElement.append(skeletonFirst, skeletonSecond, skeletonThrid);
     const renderTemplateDetail = () => restaurants.forEach((restaurant) => {
       restaurantElement.innerHTML += createRestauranItemTemplate(restaurant);
@@ -39,7 +38,7 @@ const Home = {
         skeletonThrid.classList.remove('hide');
         console.log('data tidak ada');
       }
-    }, 2000);
+    }, 700);
   },
 };
 

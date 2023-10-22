@@ -50,7 +50,7 @@ const Detail = {
         comment.classList.add('hide');
         skeletons.forEach((skeleton) => skeleton.classList.remove('hide'));
       }
-    }, 2000);
+    }, 700);
 
     reviewForm.addEventListener('submit', async (event) => {
       event.preventDefault();

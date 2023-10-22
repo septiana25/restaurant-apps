@@ -10,7 +10,7 @@ const createRestauranItemTemplate = (restaurant) => `
         <img class="rest-item__thumb" src="${CONFIG.BASE_URL_IMAGE}/medium/${restaurant.pictureId}" alt="${restaurant.name}">
         <div class="rest-item__content">
             <h2>Rating ${restaurant.rating}</h2>
-            <h3 class="rest-item__title"><a href="/#/detail/${restaurant.id}">${restaurant.name}</a></h3>
+            <h3 class="rest-item__title"><a href="#/detail/${restaurant.id}">${restaurant.name}</a></h3>
             <p class="rest-item__description">${Str(restaurant.description).limit(100, '...').get()}</p>
             <h1></h1>
         </div>
