@@ -1,13 +1,15 @@
 import '../../components/app-skeleton';
 import DataSource from '../../data/data-source';
 import UrlParser from '../../routers/url-parser';
-import { createDetailRestauranItemTemplate } from '../templates/template';
+import LikeButtonInitiator from '../../utils/like-button-initiator';
+import { createDetailRestauranItemTemplate, createLikeButtonTemplate } from '../templates/template';
 
 const Detail = {
   async render() {
     return `
             <article id="container-detail">
                 <div class="rest-detail"></div>
+                <div id="likeButtonContainer"></div>
                 <app-skeleton></app-skeleton>
                 <app-skeleton></app-skeleton>
                 <app-skeleton></app-skeleton>
@@ -31,6 +33,7 @@ const Detail = {
   },
 
   async afterRender() {
+    const likeButtonContainer = document.querySelector('#likeButtonContainer');
     const restaurantElement = document.querySelector('.rest-detail');
     const reviewForm = document.querySelector('#comment-form');
     const skeletons = document.querySelectorAll('app-skeleton');
@@ -38,6 +41,19 @@ const Detail = {
 
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const restaurant = await DataSource.fetchById(url);
+
+    const likeButton = () => {
+      LikeButtonInitiator.init({
+        likeButtonContainer: document.querySelector('#likeButtonContainer'),
+        restaurant: {
+          id: restaurant.id,
+          pictureId: restaurant.pictureId,
+          rating: restaurant.rating,
+          name: restaurant.name,
+          city: restaurant.city,
+        },
+      });
+    };
     setTimeout(() => {
       if (Object.keys(restaurant).length > 0) {
         skeletons.forEach((skeleton) => skeleton.classList.add('hide'));
@@ -45,6 +61,8 @@ const Detail = {
         comment.classList.remove('hide');
 
         restaurantElement.innerHTML += createDetailRestauranItemTemplate(restaurant);
+        likeButtonContainer.innerHTML = createLikeButtonTemplate();
+        likeButton();
       } else {
         restaurantElement.classList.add('skeletonFirst');
         comment.classList.add('hide');
@@ -70,6 +88,8 @@ const Detail = {
         restaurant.customerReviews = postReview.customerReviews;
         restaurantElement.innerHTML = '';
         restaurantElement.innerHTML += createDetailRestauranItemTemplate(restaurant);
+        likeButtonContainer.innerHTML = createLikeButtonTemplate();
+        likeButton();
       } else {
         console.log('Review gagal disimpan');
       }

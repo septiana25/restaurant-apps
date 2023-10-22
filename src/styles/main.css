@@ -42,11 +42,17 @@ body {
 }
 .skip-to-content {
     position: absolute;
+    top: -50px;
+    left: 0;
+    padding: 15px;
+    background-color: var(--main-color);
+    color: var(--font-main);
     z-index: 2;
+
 }
 
-.skip-to-content a {
-    color: var(--color-white);
+.skip-to-content:focus {
+  top: 0px;
 }
 
 header {
@@ -178,6 +184,7 @@ main {
     font-size: var(--font-head);
     font-weight: lighter;
 }
+
 
 .explore-label::after {
     content: '';
@@ -446,5 +453,22 @@ main {
     background-color: #27408b;
   }
   
-  
+  .like {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #db0000;
+    
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    border-radius: 50%;
+    border: 0;
+    
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+  }
 

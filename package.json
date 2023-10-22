@@ -7,7 +7,7 @@
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "serve": "http-server dist --port 8080",
-    "build-start" : "build && serve",
+    "build-start": "build && serve",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
@@ -45,6 +45,7 @@
   "dependencies": {
     "@supercharge/strings": "^2.0.0",
     "axios": "^1.5.1",
+    "idb": "^7.1.1",
     "regenerator-runtime": "^0.14.0",
     "webpack-bundle-analyzer": "^4.9.1",
     "workbox-window": "^7.0.0"
