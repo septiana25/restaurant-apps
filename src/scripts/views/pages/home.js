@@ -1,3 +1,4 @@
+import 'regenerator-runtime';
 import '../../components/app-skeleton';
 import DataSource from '../../data/data-source';
 import { createRestauranItemTemplate } from '../templates/template';
@@ -13,17 +14,31 @@ const Home = {
         </section>
     `;
   },
+
   async afterRender() {
-    const restaurants = await DataSource.fetchRestaurants();
     const restaurantElement = document.querySelector('#restaurants');
-    const skeleton = document.createElement('app-skeleton');
-    restaurantElement.appendChild(skeleton);
+    const skeletonFirst = document.createElement('app-skeleton');
+    const skeletonSecond = document.createElement('app-skeleton');
+    const skeletonThrid = document.createElement('app-skeleton');
+
+    const restaurants = await DataSource.fetchRestaurants();
+    console.log(restaurants);
+    restaurantElement.append(skeletonFirst, skeletonSecond, skeletonThrid);
+    const renderTemplateDetail = () => restaurants.forEach((restaurant) => {
+      restaurantElement.innerHTML += createRestauranItemTemplate(restaurant);
+    });
     setTimeout(() => {
-      restaurants.length > 0
-        ? restaurants.forEach((restaurant) => {
-          restaurantElement.innerHTML += createRestauranItemTemplate(restaurant)
-        })
-        : console.log('data tidak ada');
+      if (restaurants.length > 0) {
+        skeletonFirst.classList.add('hide');
+        skeletonSecond.classList.add('hide');
+        skeletonThrid.classList.add('hide');
+        renderTemplateDetail();
+      } else {
+        skeletonFirst.classList.remove('hide');
+        skeletonSecond.classList.remove('hide');
+        skeletonThrid.classList.remove('hide');
+        console.log('data tidak ada');
+      }
     }, 2000);
   },
 };

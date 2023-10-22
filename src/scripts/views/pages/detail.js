@@ -1,3 +1,4 @@
+import '../../components/app-skeleton';
 import DataSource from '../../data/data-source';
 import UrlParser from '../../routers/url-parser';
 import { createDetailRestauranItemTemplate } from '../templates/template';
@@ -7,7 +8,10 @@ const Detail = {
     return `
             <article id="container-detail">
                 <div class="rest-detail"></div>
-                <div class="comment">
+                <app-skeleton></app-skeleton>
+                <app-skeleton></app-skeleton>
+                <app-skeleton></app-skeleton>
+                <div class="comment hide">
                   <span class="comment-title">Leave a Comment</span>
                   <form class="comment-form" id="comment-form">
                     <div class="group">
@@ -27,11 +31,27 @@ const Detail = {
   },
 
   async afterRender() {
+    const restaurantElement = document.querySelector('.rest-detail');
+    const reviewForm = document.querySelector('#comment-form');
+    const skeletons = document.querySelectorAll('app-skeleton');
+    const comment = document.querySelector('.comment');
+
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const restaurant = await DataSource.fetchById(url);
-    const container = document.querySelector('.rest-detail');
-    container.innerHTML += createDetailRestauranItemTemplate(restaurant);
-    const reviewForm = document.querySelector('#comment-form');
+    setTimeout(() => {
+      if (Object.keys(restaurant).length > 0) {
+        skeletons.forEach((skeleton) => skeleton.classList.add('hide'));
+        restaurantElement.classList.remove('skeletonFirst');
+        comment.classList.remove('hide');
+
+        restaurantElement.innerHTML += createDetailRestauranItemTemplate(restaurant);
+      } else {
+        restaurantElement.classList.add('skeletonFirst');
+        comment.classList.add('hide');
+        skeletons.forEach((skeleton) => skeleton.classList.remove('hide'));
+      }
+    }, 2000);
+
     reviewForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -48,8 +68,8 @@ const Detail = {
         document.querySelector('#name').value = '';
         document.querySelector('#comment').value = '';
         restaurant.customerReviews = postReview.customerReviews;
-        container.innerHTML = '';
-        container.innerHTML += createDetailRestauranItemTemplate(restaurant);
+        restaurantElement.innerHTML = '';
+        restaurantElement.innerHTML += createDetailRestauranItemTemplate(restaurant);
       } else {
         console.log('Review gagal disimpan');
       }

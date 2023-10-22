@@ -61,6 +61,10 @@
         grid-template-columns: auto 1fr;
     }
 
+    .rest-detail.skeletonFirst {
+        grid-template-columns: 1fr !important;
+    }
+
     .detail-label {
         grid-column-start: 1;
         grid-column-end: 3;

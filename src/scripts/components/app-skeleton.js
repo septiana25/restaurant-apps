@@ -7,7 +7,7 @@ class AppSkeleton extends HTMLElement {
     this.innerHTML = `
     <style>
         .card-skeleton {
-            width: 18rem;
+            width: 100%;
             padding: 1rem;
             text-align: center;
             border-radius: .8rem;
