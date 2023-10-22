@@ -1,6 +1,8 @@
 import 'regenerator-runtime';
 import '../styles/main.css';
 import '../styles/responsive.css';
+import './components/app-bar';
+import './components/app-footer';
 
 import App from './views/app';
 // import CONFIG from './globals/config';

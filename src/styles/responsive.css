@@ -33,6 +33,10 @@
         flex-direction: column;
         gap: .5rem;
     }
+
+    .customer-reviwes h3 {
+        text-align: left;
+    }
 }
 
 @media screen and (min-width: 538px) {
