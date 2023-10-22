@@ -24,6 +24,19 @@ class DataSource {
       return new Error('Check your internet connection');
     }
   }
+
+  static async createReview(data) {
+    try {
+      const response = await apiURL.post('/review', {
+        id: data.id,
+        name: data.name,
+        review: data.review,
+      });
+      return response.data;
+    } catch (error) {
+      return new Error('Check your internet connection');
+    }
+  }
 }
 
 export default DataSource;

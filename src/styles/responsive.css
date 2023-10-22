@@ -23,7 +23,16 @@
         border-bottom: 1px solid #e0e0e0;
         width: 100%;
         padding-block: 0.5rem;
-    }    
+    }   
+    
+    .rest-detail__menu h3 {
+        text-align: left;
+    }
+
+    .menus {
+        flex-direction: column;
+        gap: .5rem;
+    }
 }
 
 @media screen and (min-width: 538px) {
@@ -57,6 +66,19 @@
         grid-column-start: 1;
         grid-column-end: 3;
     }
+
+    .rest-detail__menu {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .customer-reviwes {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+ 
+
 }
 
 @media screen and (min-width: 700px) {
