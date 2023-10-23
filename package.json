@@ -6,7 +6,7 @@
   "scripts": {
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "serve": "http-server dist --port 9000",
+    "serve": "http-server dist --port 5000",
     "build-start": "build && serve",
     "test": "jest",
     "test:watch": "jest --watchAll"
