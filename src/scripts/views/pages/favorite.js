@@ -1,5 +1,6 @@
 import 'regenerator-runtime';
 import '../../components/app-skeleton';
+import '../../components/app-not-found';
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
 import { createRestauranItemTemplate } from '../templates/template';
 
@@ -19,12 +20,33 @@ const Favorite = {
     const skeletonFirst = document.createElement('app-skeleton');
     const skeletonSecond = document.createElement('app-skeleton');
     const skeletonThrid = document.createElement('app-skeleton');
+    const notFoundElement = document.createElement('app-not-found');
+
+    notFoundElement.classList.add('hide');
+    restaurantElement.append(skeletonFirst, skeletonSecond, skeletonThrid, notFoundElement);
 
     const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
-    restaurantElement.append(skeletonFirst, skeletonSecond, skeletonThrid);
     const renderTemplateDetail = () => restaurants.forEach((restaurant) => {
       restaurantElement.innerHTML += createRestauranItemTemplate(restaurant);
     });
+
+    const notFound = () => {
+      setTimeout(() => {
+        skeletonFirst.classList.add('hide');
+        skeletonSecond.classList.add('hide');
+        skeletonThrid.classList.add('hide');
+        notFoundElement.classList.remove('hide');
+        notFoundElement.innerHTML = `
+        <style>
+          app-not-found {
+            grid-column-start: 1;
+            grid-column-end: 4;
+          }
+        </style>
+        `;
+      }, 2000);
+    };
+
     setTimeout(() => {
       if (restaurants.length > 0) {
         skeletonFirst.classList.add('hide');
@@ -35,7 +57,7 @@ const Favorite = {
         skeletonFirst.classList.remove('hide');
         skeletonSecond.classList.remove('hide');
         skeletonThrid.classList.remove('hide');
-        console.log('data tidak ada');
+        notFound();
       }
     }, 700);
   },

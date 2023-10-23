@@ -32,7 +32,6 @@ html {
 
 body {
     font-family: 'Nunito', sans-serif;
-    font-size: 14px;
     color: var(--font-main);
     display: flex;
     flex-direction: column;
@@ -42,7 +41,7 @@ body {
 }
 .skip-to-content {
     position: absolute;
-    top: -50px;
+    top: -60px;
     left: 0;
     padding: 15px;
     background-color: var(--main-color);
@@ -64,7 +63,8 @@ header {
     margin-left: auto;
     margin-right: auto;
     background: var(--color-white);
-    padding: 8px 7%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 7px 7%;
     transition: all .50s ease;
     z-index: 1;
 }
@@ -100,8 +100,7 @@ header {
 .nav-item a {
     Display: flex;
     align-items: center;
-    font-size: .9rem;
-    font-weight: 400;
+    font-weight: 500;
     padding-left: 1rem;
     padding-right: 1rem;
     color: var(--font-main);
@@ -242,7 +241,6 @@ main {
     display: flex;
     align-items: center;
     height: 50px;
-    font-size: 18px;
     transition: 0.3s opacity;
     text-transform: capitalize;
 }
@@ -258,7 +256,6 @@ main {
 }
 
 .rest-item__description {
-    font-size: 12px;
     line-height: 1.5em;  
 }
 
@@ -278,6 +275,7 @@ main {
 .rest-detail__thumb {
     width: 100%;
     max-width: 400px;
+    margin: 0 auto;
 }
 
 .detail-label {
@@ -301,17 +299,20 @@ main {
     padding-inline-end: 0.5rem;
 }
 
-.rest-detail__menu h3 {
-    padding-block: 1rem;
-    text-align: center;
-}
-
 .menus {
     display: flex;
     justify-content: space-around;
+    gap: 1rem;
 }
 
-.reviwe {
+.menus .menu {
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+
+.card {
     width: 100%;
     font-family: "Arial";
     padding: 1rem;
@@ -323,30 +324,31 @@ main {
     margin-block-end: 0.8rem;
   }
   
-  .reviwe > * + * {
+  .card > * + * {
     margin-top: 1.1em;
   }
 
-  .customer-reviwes h3 {
+  .cards h3 {
     text-align: center;
     padding-block: 1rem;
 }
   
-  .reviwe .reviwe__content {
+  .card .card__content {
     color: var(--secondary-color);
-    font-size: 0.86rem;
   }
   
-  .reviwe .reviwe__title {
-    padding: 0;
+  .card .card__title {
+    padding-block: 1rem;
+    margin-bottom: 0;
+    height: 44px;
   }
   
-  .reviwe .reviwe__date {
+  .card .card__date {
     color: #6e6b80;
     font-size: 0.8rem;
   }
   
-  .reviwe .reviwe__arrow {
+  .card .card__arrow {
     position: absolute;
     background: var(--primary-color);
     padding: 0.4rem;
@@ -360,7 +362,7 @@ main {
     align-items: center;
   }
   
-  .reviwe:hover .reviwe__title {
+  .card:hover .card__title {
     color: var(--primary-color);
     text-decoration: underline;
   }
@@ -378,9 +380,8 @@ main {
   }
   
   .comment-title {
-    font-size: 24px;
-    font-weight: 600;
     text-align: center;
+    padding-block: 1rem;
   }
   
   .comment-form {

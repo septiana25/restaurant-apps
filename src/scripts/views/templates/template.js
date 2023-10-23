@@ -18,10 +18,10 @@ const createRestauranItemTemplate = (restaurant) => `
     </article>  
 `;
 const createDetailRestauranItemTemplate = (restaurant) => `
-    <h2 class="detail-label">${restaurant.name}</h2>
+    <h2 tabindex="0" class="detail-label">${restaurant.name}</h2>
     <img class="rest-detail__thumb" src="${CONFIG.BASE_URL_IMAGE}/medium/${restaurant.pictureId}" alt="${restaurant.name}">
     <div class="rest-detail__content">
-        <h3>Info Restauran: </h3>
+        <h3 tabindex="0">Info Restauran : </h3>
         <div class="wraper">
             <label> Alamat </label>
             <p class="rest-detail__address">: ${restaurant.address}</p>
@@ -33,34 +33,30 @@ const createDetailRestauranItemTemplate = (restaurant) => `
         
         <p class="rest-detail__description">${restaurant.description}</p>
     </div>
-    <div class="rest-detail__menu">
-        <h3>Menu </h3>
+    <div class="rest-detail__menu cards">
+        <h3 tabindex="0">Daftar Menu </h3>
         <div class="menus">
-            <div class="foods-menu">
-                <h4>Daftar Makanan</h4>
-                <ul>
+            <div class="card menu">
+                <h4 tabindex="0" class="card__title">Makanan</h4>
                 ${restaurant.menus.foods.map((food) => `
-                    <li>${food.name}</li>
+                    <p class="card__content">${food.name}</p>
                 `).join('')}
-                </ul>
             </div>
-            <div class="drinks-menu">
-                <h4>Daftar Minuman</h4>
-                <ul>
+            <div class="card menu">
+                <h4 tabindex="0" class="card__title">Minuman</h4>
                 ${restaurant.menus.drinks.map((drink) => `
-                    <li>${drink.name}</li>
+                    <p class="card__content">${drink.name}</p>
                 `).join('')}
-                </ul>
             </div>
         </div>
     </div>
-    <div class="customer-reviwes">
-        <h3>Customer Review </h3>
+    <div class="customer-reviwes cards">
+        <h3 tabindex="0">Ulasan Konsumen </h3>
         ${restaurant.customerReviews.map((reviwe) => `
-        <div class="reviwe">
-                <h4 class="reviwe__title">${reviwe.name}</h4>
-                <p class="reviwe__content">${reviwe.review}</p>
-                <div class="reviwe__date">${reviwe.date}</div>
+        <div class="card">
+                <h4 class="card__title">${reviwe.name}</h4>
+                <p class="card__content">${reviwe.review}</p>
+                <div class="card__date">${reviwe.date}</div>
         </div>
         `).join('')}
     </div>

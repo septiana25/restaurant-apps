@@ -3,8 +3,12 @@ import UrlParser from '../routers/url-parser';
 import DrawerInitiator from '../utils/drawer-initiator';
 
 class App {
-  constructor({ button, drawer, content }) {
+  constructor({
+    button, ctaEnter, hero, drawer, content,
+  }) {
     this._button = button;
+    this._ctaEnter = ctaEnter;
+    this._hero = hero;
     this._drawer = drawer;
     this._content = content;
 
@@ -14,6 +18,8 @@ class App {
   _initialAppShell() {
     DrawerInitiator.init({
       button: this._button,
+      ctaEnter: this._ctaEnter,
+      hero: this._hero,
       drawer: this._drawer,
       content: this._content,
     });

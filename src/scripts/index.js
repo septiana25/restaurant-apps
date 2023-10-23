@@ -10,6 +10,8 @@ import App from './views/app';
 
 const app = new App({
   button: document.querySelector('.menu-btn'),
+  ctaEnter: document.querySelector('#drawer-btn'),
+  hero: document.querySelector('.hero'),
   drawer: document.querySelector('#drawer'),
   content: document.querySelector('#mainContent'),
 });

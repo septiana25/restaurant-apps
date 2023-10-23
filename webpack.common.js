@@ -7,6 +7,11 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
   entry: {
     app: path.resolve(__dirname, 'src/scripts/index.js'),
   },
@@ -58,6 +63,9 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'src/public/'),
           to: path.resolve(__dirname, 'dist/'),
+          globOptions: {
+            ignore: ['**/images/**'],
+          },
         },
       ],
     }),
