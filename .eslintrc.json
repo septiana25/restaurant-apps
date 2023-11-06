@@ -15,5 +15,14 @@
         "no-underscore-dangle": 0,
         "no-restricted-globals": 0,
         "linebreak-style": 0
-    }
+    },
+    "overrides": [
+        {
+            "files": ["tests/**/*.test.js", "tests/**/*.js", "e2e/**/*.test.js"],
+            "rules": {
+                "no-undef": "off",
+                "import/prefer-default-export": "off"
+            }
+        }
+    ]
 }
