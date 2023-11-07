@@ -6,6 +6,7 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
+
 module.exports = {
   optimization: {
     splitChunks: {
