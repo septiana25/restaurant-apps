@@ -7,7 +7,7 @@ class AppBar extends HTMLElement {
     this.innerHTML = `
         <header>
         <a class="logo" href="#">
-          <img src="./restaurant-id.png" alt="logo restaurantID">
+          <img src="./assets/restaurant-id.png" alt="logo restaurantID">
         </a>
         <div tabindex="0" id="drawer-btn">
           <a class="menu-btn" aria-label="menu navigation">☰</a>

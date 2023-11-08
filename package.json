@@ -25,6 +25,7 @@
     "codeceptjs": "^3.5.7",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
+    "css-minimizer-webpack-plugin": "^5.0.1",
     "eslint": "^8.51.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.28.1",
@@ -52,8 +53,13 @@
     "@supercharge/strings": "^2.0.0",
     "axios": "^1.5.1",
     "idb": "^7.1.1",
+    "lazysizes": "^5.3.2",
+    "mini-css-extract-plugin": "^2.7.6",
     "regenerator-runtime": "^0.14.0",
     "sweetalert2": "^11.7.32",
+    "workbox-precaching": "^7.0.0",
+    "workbox-routing": "^7.0.0",
+    "workbox-strategies": "^7.0.0",
     "workbox-window": "^7.0.0"
   }
 }

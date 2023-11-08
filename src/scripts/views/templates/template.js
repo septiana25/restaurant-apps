@@ -7,7 +7,7 @@ const createRestauranItemTemplate = (restaurant) => `
         <div class="rest-city">
             <p>${restaurant.city}</p>
         </div>
-        <img class="rest-item__thumb" src="${CONFIG.BASE_URL_IMAGE}/medium/${restaurant.pictureId}" alt="${restaurant.name}">
+        <img class="rest-item__thumb lazyload" data-src="${CONFIG.BASE_URL_IMAGE}/medium/${restaurant.pictureId}" alt="${restaurant.name}">
         <div class="rest-item__content">
             <h2>Rating ${restaurant.rating}</h2>
             <h3 class="rest-item__title"><a href="#/detail/${restaurant.id}">${restaurant.name}</a></h3>
@@ -19,7 +19,7 @@ const createRestauranItemTemplate = (restaurant) => `
 `;
 const createDetailRestauranItemTemplate = (restaurant) => `
     <h2 tabindex="0" class="detail-label">${restaurant.name}</h2>
-    <img class="rest-detail__thumb" src="${CONFIG.BASE_URL_IMAGE}/medium/${restaurant.pictureId}" alt="${restaurant.name}">
+    <img class="rest-detail__thumb lazyload" data-src="${CONFIG.BASE_URL_IMAGE}/medium/${restaurant.pictureId}" alt="${restaurant.name}">
     <div class="rest-detail__content">
         <h3 tabindex="0">Info Restauran : </h3>
         <div class="wraper">

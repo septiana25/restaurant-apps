@@ -2,10 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   optimization: {
@@ -24,15 +22,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-        ],
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
     ],
   },
@@ -51,6 +42,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
@@ -58,44 +50,19 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/templates/index.html'),
+      favicon: path.resolve(__dirname, 'src/public/favicon.ico'),
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: path.resolve(__dirname, 'src/public/'),
-          to: path.resolve(__dirname, 'dist/'),
-          globOptions: {
-            ignore: ['**/images/**'],
-          },
+          to: path.resolve(__dirname, 'dist/assets'),
         },
       ],
     }),
-    new NodePolyfillPlugin(),
-    new WorkboxWebpackPlugin.GenerateSW({
-      swDest: './sw.bundle.js',
-      runtimeCaching: [
-        {
-          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev'),
-          handler: 'StaleWhileRevalidate',
-          options: {
-            cacheName: 'restaurant-api',
-          },
-        },
-        {
-          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/images/medium/'),
-          handler: 'StaleWhileRevalidate',
-          options: {
-            cacheName: 'restaurant-image-api',
-          },
-        },
-        {
-          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/review'),
-          handler: 'StaleWhileRevalidate',
-          options: {
-            cacheName: 'restaurant-review-api',
-          },
-        },
-      ],
+
+    new MiniCssExtractPlugin({
+      linkType: 'text/css',
     }),
   ],
 };
