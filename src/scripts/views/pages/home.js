@@ -36,7 +36,6 @@ const Home = {
         skeletonFirst.classList.remove('hide');
         skeletonSecond.classList.remove('hide');
         skeletonThrid.classList.remove('hide');
-        console.log('data tidak ada');
       }
     }, 700);
   },
