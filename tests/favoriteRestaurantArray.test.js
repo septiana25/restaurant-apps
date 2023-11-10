@@ -1,36 +1,43 @@
-let favoriteRestaurant = [];
+/* eslint-disable consistent-return */
+/* eslint-disable no-prototype-builtins */
+import itActsAsFavoriteRestaurantModel from './contracts/favoriteRestaurantContract';
+
+let favoriteRestaurants = [];
 
 const FavoriteRestaurantArray = {
   getRestaurant(id) {
-    if (!id) {
-      return;
-    }
+    if (!id) return;
 
-    // eslint-disable-next-line consistent-return
-    return favoriteRestaurant.find((restaurant) => restaurant.id === id);
+    return favoriteRestaurants.find((restaurant) => restaurant.id === id);
   },
 
-  getAllRestaurant() {
-    return favoriteRestaurant;
+  getAllRestaurants() {
+    return favoriteRestaurants;
   },
 
   putRestaurant(restaurant) {
-    // eslint-disable-next-line no-prototype-builtins
-    if (!restaurant.hasOwnProperty('id')) {
-      return;
-    }
+    if (!restaurant.hasOwnProperty('id')) return;
 
-    const existingRestaurant = this.getRestaurant(restaurant.id);
-    if (existingRestaurant) {
-      return;
-    }
+    if (this.getRestaurant(restaurant.id)) return;
 
-    favoriteRestaurant.push(restaurant);
+    favoriteRestaurants.push(restaurant);
   },
 
   deleteRestaurant(id) {
-    favoriteRestaurant = favoriteRestaurant.filter((restaurant) => restaurant.id !== id);
+    favoriteRestaurants = favoriteRestaurants.filter((restaurant) => restaurant.id !== id);
+  },
+
+  async searchRestaurants(query) {
+    const data = await this.getAll();
+
+    return data.filter((restaurant) => restaurant.name.toLowerCase().includes(query.toLowerCase()));
   },
 };
 
-export default FavoriteRestaurantArray;
+describe('Favorite Restaurant Array Contract Test Implementation', () => {
+  afterEach(() => {
+    favoriteRestaurants = [];
+  });
+
+  itActsAsFavoriteRestaurantModel(FavoriteRestaurantArray);
+});
